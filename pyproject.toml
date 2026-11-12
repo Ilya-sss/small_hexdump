@@ -18,7 +18,7 @@ tests = [
 ]
 
 [project.scripts]
-hexdump = "small_hexdump.cli:main"
+small_hexdump = "small_hexdump.cli:main"
 
 [tool.maturin]
 python-source = "python"
