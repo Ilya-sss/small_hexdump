@@ -13,15 +13,16 @@ $ small_hexdump -C /bin/ls | head -3
 
 ---
 
-## Features (v0.1)
+## Features (v0.2)
 
 - **Plain mode:** hex bytes only, one chunk per line.
 - **Canonical mode (`-C`):** offset, hex bytes and an ASCII column, like `hexdump -C`.
+- **Octal mode (`-b`):** offset, octal bytes, like `hexdump -b`
 - **Configurable line width (`-k`):** choose how many bytes are shown per line (default 16).
 - Non-printable bytes are shown as `.` in the ASCII column.
 - Clear error message if the file cannot be read.
 
-### Not in v0.1 yet
+### Not in v0.2 yet
 
 - Collapsing repeated lines into `*` (like the real `hexdump`).
 - Reading in blocks: the whole file is loaded into memory, so very large files use a lot of RAM.
