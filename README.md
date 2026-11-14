@@ -75,14 +75,15 @@ The wheel is created in `dist/`. It contains compiled Rust code, so it only work
 ## Usage
 
 ```
-small_hexdump [-h] [-k K] [-C] file
+small_hexdump [-h] [OPTIONS] file
 ```
 
 | Option | Description |
 |---|---|
 | `file` | File to dump |
-| `-k K` | Bytes per line (default: `16`, must be at least `1`) |
+| `-k K` | Bytes per line (must be at least `1`) |
 | `-C` | Canonical output: offset + hex + ASCII |
+| `-b` | Octal output: octal offset and byte values |
 | `-h` | Show help |
 
 ### Examples
@@ -94,8 +95,8 @@ small_hexdump main
 ```
 
 ```
-7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00
-03 00 3e 00 01 00 00 00 20 10 00 00 00 00 00 00
+00000000  7f 45 4c 46 02 01 01 00
+00000008  00 00 00 00 00 00 00 00
 ```
 
 Canonical output:
@@ -105,8 +106,8 @@ small_hexdump -C main
 ```
 
 ```
-00000000  7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00  |.ELF............|
-00000010  03 00 3e 00 01 00 00 00 20 10 00 00 00 00 00 00  |........ .......|
+00000000  7f 45 4c 46 02 01 01 00  |.ELF....|
+00000008  00 00 00 00 00 00 00 00  |........|
 ```
 
 8 bytes per line:
@@ -115,10 +116,21 @@ small_hexdump -C main
 small_hexdump -C -k 8 main
 ```
 
-Only the first lines (pipe to `head`):
+Octal output:
 
 ```bash
-small_hexdump -C main | head
+small_hexdump -b main
+```
+
+```
+00000000  177 105 114 106 002 001 001 000
+00000008  000 000 000 000 000 000 000 000
+```
+
+Use `-k` to change the number of the bytes per line:
+
+```bash
+small_hexdump -b -k 8 main
 ```
 
 ---

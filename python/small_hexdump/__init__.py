@@ -1,3 +1,3 @@
-from ._core import hexdump_plain, hexdump_canonical
+from ._core import *
 
-__all__ = ["hexdump_plain", "hexdump_canonical"]
+__all__ = ["hexdump_plain", "hexdump_canonical", "hexdump_octal"]
